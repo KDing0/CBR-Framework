@@ -1,4 +1,4 @@
-package cbr
+package main
 
 /*---FILE DESCRIPTION---
 Contains functions to insert data from the game into the AIData

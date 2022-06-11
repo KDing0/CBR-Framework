@@ -1,4 +1,4 @@
-package cbr
+package main
 
 /*---FILE DESCRIPTION---
 Contains the process for processing a replay of annotated frames (rawFrames) and turn them into a replay of cases.

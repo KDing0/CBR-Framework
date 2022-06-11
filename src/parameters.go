@@ -1,4 +1,4 @@
-package cbr
+package main
 
 /*---FILE DESCRIPTION---
 The parameter file contains structs with parameters that changes how the CBR AI interprets or works with the gamestate and its cases.

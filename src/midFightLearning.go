@@ -1,4 +1,4 @@
-package cbr
+package main
 
 /*---FILE DESCRIPTION---
 The interface file contains functions to let the game interface with the CBR system.

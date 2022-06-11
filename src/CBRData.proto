@@ -2,7 +2,7 @@ syntax = "proto3";
 package main;
 
 
-option go_package = "/cbr";
+option go_package = "/main";
 
 message CBRData {
   repeated ReplayFile replayFile = 1;

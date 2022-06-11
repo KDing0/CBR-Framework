@@ -1,4 +1,4 @@
-package cbr
+package main
 
 /*---FILE DESCRIPTION---
 Contains functions that control the managing of AI relevant data and to start/end recording or turn the AI on/off

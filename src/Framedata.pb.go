@@ -4,7 +4,7 @@
 // 	protoc        v3.17.2
 // source: cbr/Framedata.proto
 
-package cbr
+package main
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

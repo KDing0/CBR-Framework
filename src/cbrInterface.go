@@ -1,20 +1,19 @@
 package main
 
 import (
-	"github.com/ikemen-engine/Ikemen-GO/src/cbr"
-	"strconv"
+	//"C"
+	//"strconv"
 )
 
 /*---FILE DESCRIPTION---
 Functions required to send information about the game-state to the CBR AI.
-Functions for getting information from the CBR AI can be found in \cbr\interface.go
+Functions for getting information from the CBR AI can be found in \cbr\goInterface.go
 ---FILE DESCRIPTION---*/
-
+/*
 //Interface to send game-state data to the CBR AI every Frame
-func (s *System) cbrAddFrame() bool {
+func cbrAddFrame(stageStart float32, stageEnd float32, ) bool {
 	//saves player inputs for CBR AI
-	if cbr.CheckFrameInsertable() || cbr.CheckCBRReplaying() {
-		var iBit InputBits
+	if CheckFrameInsertable() || cbr.CheckCBRReplaying() {
 		cbr.AddFrame()
 		cbr.ReplayRecordStageData(s.cam.XMin, s.cam.XMax)
 		cbr.ReplayRecordRoundState(s.chars[0][0].roundState())
@@ -132,7 +131,8 @@ func (s *System) cbrAddFrame() bool {
 	}
 	return true
 }
-
+*/
+/*
 //called while fighting every frame to update the CBR ai recording/replaying state.
 //used so that setting changes dont take effect every time a setting is changed, but instead collectively after settings were changed.
 var aiUpdateDelay = 10
@@ -175,189 +175,5 @@ func endCbrActivity(discard bool) {
 	updateCbrAiState(discard, true)
 }
 
-//--------more complex data read functions-------------
-type FrameAdvantageState struct {
-	initalStunState bool
-	initalEnemyNr   int
-	Frameadvantage  int
-	selfInitator    bool
+ */
 
-	returningFramedataTime int
-}
-
-var stunStates = map[int]FrameAdvantageState{}
-
-func checkFrameAdvantageState(charIndex int) int {
-	if sys.chars[charIndex] == nil || sys.chars[charIndex][0] == nil {
-		return -1
-	}
-
-	val, ok := stunStates[charIndex]
-	if !ok {
-		val = FrameAdvantageState{initalStunState: false, initalEnemyNr: -1, returningFramedataTime: 0, Frameadvantage: 0}
-		stunStates[charIndex] = val
-	}
-
-	hitStun := sys.chars[charIndex][0].ghv.hittime > 0
-	ctrl := sys.chars[charIndex][0].ctrl()
-	attack := sys.chars[charIndex][0].ss.moveType&MT_A > 0
-
-	enemyHitStun := -1
-	enemyCtrl := false
-	enemyAttack := -1
-	for i := range sys.chars {
-		if i != charIndex && sys.chars[i] != nil {
-			if sys.chars[i][0].ss.moveType&MT_A > 0 {
-				enemyAttack = i
-			}
-			if sys.chars[i][0].ghv.hittime > 0 {
-				enemyHitStun = i
-			}
-			if val.initalEnemyNr == i && sys.chars[i][0].ctrl() {
-				enemyCtrl = true
-			}
-		}
-	}
-
-	if val.initalStunState == false {
-		if hitStun == true && enemyAttack >= 0 {
-			val.initalStunState = true
-			val.initalEnemyNr = enemyAttack
-			val.Frameadvantage = 0
-			val.selfInitator = false
-
-		}
-		if attack == true && enemyHitStun >= 0 {
-			val.initalStunState = true
-			val.initalEnemyNr = enemyHitStun
-			val.Frameadvantage = 0
-			val.selfInitator = true
-		}
-
-	} else {
-		if ctrl && !enemyCtrl {
-			val.Frameadvantage = 1
-			val.returningFramedataTime = 10
-		}
-		if !ctrl && enemyCtrl {
-			val.Frameadvantage = -1
-			val.returningFramedataTime = 10
-		}
-
-		if ctrl && enemyCtrl {
-			val.initalStunState = false
-		}
-	}
-
-	returnAdv := 0
-	if val.returningFramedataTime > 0 {
-		val.returningFramedataTime--
-		if val.selfInitator {
-			returnAdv = val.Frameadvantage * 2
-		}
-
-	}
-
-	stunStates[charIndex] = val
-	return returnAdv
-}
-
-type ComboState struct {
-	inCombo       bool
-	initalEnemyNr int
-
-	pressure  bool
-	curMoveID int64
-	movesUsed int32
-
-	didGatling bool
-}
-
-var comboStates = map[int]ComboState{}
-
-func checkComboState(charIndex int) (combo bool, pressure bool, movesUsed int32) {
-	if sys.chars[charIndex] == nil || sys.chars[charIndex][0] == nil {
-		return false, false, 0
-	}
-
-	val, ok := comboStates[charIndex]
-	if !ok {
-		val = ComboState{inCombo: false, initalEnemyNr: -1, curMoveID: -999, movesUsed: 0}
-		comboStates[charIndex] = val
-	}
-	hitStun := sys.chars[charIndex][0].ghv.hittime > 0
-	ctrl := sys.chars[charIndex][0].ctrl()
-	attack := sys.chars[charIndex][0].ss.moveType&MT_A > 0
-
-	enemyHitStun := -1
-	enemyCtrl := false
-
-	for i := range sys.chars {
-		if i != charIndex && sys.chars[i] != nil {
-			if sys.chars[i][0].ghv.hittime > 0 {
-				enemyHitStun = i
-			}
-			if val.initalEnemyNr == i && sys.chars[i][0].ctrl() {
-				enemyCtrl = true
-			}
-		}
-	}
-
-	if val.inCombo == false {
-
-		if attack == true && enemyHitStun >= 0 {
-			val.inCombo = true
-			val.initalEnemyNr = enemyHitStun
-			if sys.chars[val.initalEnemyNr][0].ghv.guarded {
-				val.pressure = true
-			}
-		}
-
-	} else {
-		if ctrl && enemyCtrl || hitStun {
-			val.inCombo = false
-			val.pressure = false
-			val.movesUsed = 0
-			val.curMoveID = -999
-			val.didGatling = false
-		}
-
-		if val.inCombo && !ctrl {
-			curMove := getCurrentMoveReference(charIndex, sys.chars[charIndex][0])
-
-			if sys.chars[val.initalEnemyNr][0].ghv.guarded != val.pressure {
-				val.curMoveID = curMove
-				val.movesUsed = 1
-				val.didGatling = false
-				val.pressure = sys.chars[val.initalEnemyNr][0].ghv.guarded
-			}
-
-			if val.curMoveID != curMove || val.didGatling == true {
-
-				val.curMoveID = curMove
-				val.movesUsed++
-				val.didGatling = false
-				//fmt.Printf("%v\n", val.curMoveID)
-				//getCurrentMoveReference(charIndex, sys.chars[charIndex][0])
-
-			}
-		}
-
-	}
-
-	comboStates[charIndex] = val
-	return val.inCombo, val.pressure, val.movesUsed
-}
-func getComboState(charIndex int) (combo bool, pressure bool, movesUsed int32) {
-	if sys.chars[charIndex] == nil || sys.chars[charIndex][0] == nil {
-		return false, false, 0
-	}
-
-	val, ok := comboStates[charIndex]
-	if !ok {
-		val = ComboState{inCombo: false, initalEnemyNr: -1, curMoveID: -999, movesUsed: 0}
-		comboStates[charIndex] = val
-	}
-
-	return val.inCombo, val.pressure, val.movesUsed
-}

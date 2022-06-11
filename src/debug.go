@@ -1,4 +1,4 @@
-package cbr
+package main
 
 import (
 	"fmt"

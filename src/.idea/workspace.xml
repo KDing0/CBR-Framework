@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="909629c8-7001-45c5-a740-32e8085ae6f3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cgoInterface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/CBRData.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/CBRData.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/Framedata.pb.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/Framedata.proto" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/byteFunctions.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/caseGenerator.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/caseSelection.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/comparisonFunctions.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/debug.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/interface.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/midFightLearning.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/parameters.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/replayControl.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/replayInsert.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/replayserver/db.sqlite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbr/saveLoad.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cbrInterface.go" beforeDir="false" afterPath="$PROJECT_DIR$/cbrInterface.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" path="$PROJECT_DIR$/../../../../../../Program Files/Go" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2APNJrpaK6tuYqcOnFdS3GQRPMv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Users\Linus\Documents\GitHub\CBR-Framework\src" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="909629c8-7001-45c5-a740-32e8085ae6f3" name="Default Changelist" comment="" />
+      <created>1654907191507</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1654907191507</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="752" y="353" key="#Go_Modules" timestamp="1654908244793">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="752" y="353" key="#Go_Modules/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1654908244793" />
+    <state x="853" y="380" key="EnvironmentVariablesDialog" timestamp="1654908242052">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="853" y="380" key="EnvironmentVariablesDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1654908242052" />
+  </component>
+</project>
