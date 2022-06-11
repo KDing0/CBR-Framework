@@ -12,6 +12,9 @@ The interface functions need to be adjusted depending on the game the CBR system
 The interface functions format the input data to be compatible with the CBR system and
 format the output data of the CBR system to be compatible with the game system again.
 ---FILE DESCRIPTION---*/
+func main(){
+
+}
 
 //export cgoDeleteData
 func cgoDeleteData() bool {
@@ -20,23 +23,23 @@ func cgoDeleteData() bool {
 //export cgoDeleteCharData
 func cgoDeleteCharData(cbrFocusCharNr C.int, charName *C.char) bool {
 
-	return deleteCharData("save/cbrData/", string(charName) + "_"+getPlayerName(int(cbrFocusCharNr)))
+	return deleteCharData("save/cbrData/", C.GoString(charName) + "_"+getPlayerName(int(cbrFocusCharNr)))
 }
 //export cgoSetPlayerName
 func cgoSetPlayerName(index C.int, name *C.char) {
 
-	SetPlayerName(int(index), string(name))
+	SetPlayerName(int(index), C.GoString(name))
 }
 //export cgoGetPlayerName
-func cgoGetPlayerName(index C.int) string {
+func cgoGetPlayerName(index C.int) *C.char {
 
-	return getPlayerName(index)
+	return C.CString(getPlayerName(int(index)))
 
 }
 
 //export cgoSetRecordingCharIndex
 func cgoSetRecordingCharIndex(index C.int) {
-	SetRecordingCharIndex(index)
+	SetRecordingCharIndex(int(index))
 }
 func cgoSetReplayingCharIndex(index int) {
 	CBRinter.replayingCharIndex = index

@@ -11,24 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="909629c8-7001-45c5-a740-32e8085ae6f3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/cgoInterface.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/CBRData.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/CBRData.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/Framedata.pb.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/Framedata.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/byteFunctions.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/caseGenerator.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/caseSelection.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/comparisonFunctions.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/debug.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/interface.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/midFightLearning.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/parameters.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/replayControl.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/replayInsert.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/replayserver/db.sqlite" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbr/saveLoad.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cbrInterface.go" beforeDir="false" afterPath="$PROJECT_DIR$/cbrInterface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cgoInterface.go" beforeDir="false" afterPath="$PROJECT_DIR$/cgoInterface.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
