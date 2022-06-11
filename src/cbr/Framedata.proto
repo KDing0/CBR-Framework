@@ -1,0 +1,72 @@
+syntax = "proto3";
+package main;
+
+
+option go_package = "/cbr";
+
+message Framedata {
+  map<string, CharData> charData = 1;
+
+
+  message CharData {
+    string name =  1;
+    string author = 2;
+    string version = 3;
+    map<int64 , MoveData> movedata = 4;
+    map<int64 , ProjectileData> projectileData = 5;
+  }
+
+  message MoveData {
+    int32 id = 1;
+    int32 startup = 2;
+    int32 active = 3;
+    int32 whiffRecovery = 4;
+    int32 blockRecovery = 5;
+    int32 blockstun = 6;
+    int32 gatlingStart = 7;
+    int32 gatlingEnd = 8;
+    int32 whiffCancelStart = 9;
+    int32 whiffCancelEnd = 10;
+    int32 lastMultihit = 11;
+    int32 hitAttribute = 12;
+    int32 guardFlag = 13;
+    int32 invulType = 14;
+    int32 invulStart = 15;
+    int32 invulEnd = 16;
+    bool aerialMove = 17;
+    repeated int32 projectileStart = 18;
+    repeated int32 projectileId = 19;
+    repeated float projectileX = 20;
+    repeated float projectileY = 21;
+    int32 stateID = 22;
+    int64  moveReference = 23;
+  }
+
+  message ProjectileData {
+    int32 id = 1;
+    int32 startup = 2;
+    int32 active = 3;
+    int32 blockstun = 4;
+    int32 lastMultihit = 5;
+    int32 hitAttribute = 6;
+    int32 guardFlag = 7;
+    int32 invulType = 8;
+    int32 invulStart = 9;
+    int32 invulEnd = 10;
+    int32 duration = 11;
+    int32 stateID = 12;
+    int64  moveReference = 13;
+  }
+
+  message InputBuffer {
+    int32 InputId1 = 1;
+    int32 InputId2 = 2;
+    int32 InputId3 = 3;
+    int32 CommandIndex = 4;
+    int32 ResetTimer = 5;
+    int32 BufferTimer = 6;
+    int32 TameIndex = 7;
+  }
+
+}
+

@@ -1,0 +1,199 @@
+syntax = "proto3";
+package main;
+
+
+option go_package = "/cbr";
+
+message CBRData {
+  repeated ReplayFile replayFile = 1;
+  string playerName = 2;
+  string charName = 3;
+
+  message ReplayFile {
+    repeated Frame frame = 1;
+    repeated Case case = 2;
+    int32 cbrFocusCharNr = 3;
+    repeated string charName = 4;
+    repeated int32 charTeam = 5;
+  }
+
+  message Frame {
+    int32 input =  1;
+    bool facing = 2;//facing "TRUE" == facing to the right
+  }
+
+  message Case {
+    int32 frameStartId = 1;
+    int32 frameEndId = 2;
+    int32 commandExecuteFrame = 3;
+    bool controllable = 7;
+    int32 controllableLastFrame = 31;
+    repeated int32 executionConditions = 8;
+    repeated DebugDescriptor debugDescriptors = 30;
+
+    //below are values important for similarity comparison
+    repeated CharCBRComparisonData charCBRComparisonData = 6;
+    WorldCBRComparisonData worldCBRComparisonData = 4;
+
+  }
+
+
+
+}
+
+
+message Position {
+  float xPos = 1;
+  float yPos = 2;
+}
+message Velocity {
+  float xVel = 1;
+  float yVel = 2;
+}
+
+message CBRRawFrames {
+  repeated ReplayFile replayFile = 1;
+
+
+  message ReplayFile {
+    repeated Frame frame = 1;
+    int32 cbrFocusCharNr = 2;
+    repeated string charName = 3;
+    repeated int32 charTeam = 4;
+    repeated string playerName = 5;
+  }
+
+  message Frame {
+    repeated CharData charData = 1;
+
+    WorldCBRComparisonData worldCBRComparisonData = 2;  //comparison function relevant
+  }
+
+  message CharData {
+    int32 input =  1;
+    bool facing = 2;
+
+    //not yet in use
+    float lifePercentage = 7;
+    float meterPercentage = 8;
+    float dizzyPercentage = 9;
+    float guardPointsPercentage = 10;
+    float recoverableHpPercentage = 11;
+    map<string, int32> commandExecution = 22;
+    int32 executionConditions = 23;
+    repeated float genericFloatVars = 24;
+    repeated int32 genericIntVars = 25;
+    float meterMax = 26;
+    int32 ikemenMoveID = 38;
+    int32 ikemenMoveFrame = 39;
+    repeated DebugDescriptor debugDescriptors = 40;
+
+
+    ComparisonData comparisonData = 3;//comparison function relevant
+    repeated HelperData helperData = 4;//comparison function relevant
+  }
+
+
+  message HelperData {
+    bool facing = 1;
+
+    //not yet in use
+    float lifePercentage = 6;
+    int32 hitStun = 9;
+    bool moveHit = 10;
+    bool moveGuarded = 11;
+    bool controllable = 12;
+    repeated float genericFloatVars = 16;
+    repeated int32 genericIntVars = 17;
+    bool MStateStanding = 20;
+    bool MStateCrouching = 21;
+    bool MStateAir = 22;
+    bool MStateLying = 23;
+
+    HelperComparisonData compData = 24;//comparison function relevant
+  }
+
+
+
+}
+
+message StageData {
+  float leftWallPos =  1;
+  float rightWallPos =  2;
+}
+
+
+message InputBuffer {
+  repeated int32 InputDirection = 1;
+  repeated int32 InputButton = 2;
+}
+
+message DebugDescriptor{
+  string primary = 1;
+  int64 secondary = 2;
+  int64 tertiary = 3;
+}
+
+//character specific values stored for comparison functions
+message ComparisonData {
+  Position charPos = 5;  //Array is used when data is saved for more than jsut the player. Player ID in the array is the cbrFocusCharNr
+  bool controllable = 6;
+  InputBuffer inputBuffer = 8;
+  int32 blockstun = 11;
+  int32 hitStun = 12;
+  int32 currentMoveFrame = 13;
+  int64 currentMoveReferenceID = 14;
+  bool facing = 15;//facing "TRUE" == facing to the right
+  bool MStateStanding = 17;
+  bool MStateCrouching = 18;
+  bool MStateAir = 19;
+  bool MStateLying = 20;
+  bool AStateIdle = 21;
+  bool AStateHit = 22;
+  bool AStateAttack = 23;
+  bool moveGuarded = 24;
+  bool moveHit = 25;
+  bool selfHit = 26;
+  bool selfGuard = 27;
+  Velocity velocity = 29;
+  int32 controllableLastFrame = 31;
+  GenericVars  genericVars = 32;
+  int32 frameAdv = 33;
+  int32 comboMovesUsed = 34;
+  bool pressure = 35;
+}
+
+message GenericVars{
+  map<int32, float>  genericFloatVars = 1;
+  map<int32, int32>  genericIntVars = 2;
+}
+
+message CharacterHelpers{
+
+}
+
+//helper specific values stored for comparison functions
+message HelperComparisonData {
+  int32 currentMoveFrame = 2;
+  int64 currentMoveReferenceID = 3;
+  Velocity velocity = 1;
+  float positionX = 6;
+  float positionY = 7;
+  int32 helperID = 8;
+  bool hitboxOut = 9;
+  bool hurtboxOut = 10;
+  bool AStateIdle = 11;
+  bool AStateHit = 12;
+  bool AStateAttack = 13;
+  GenericVars genericVars = 14;
+}
+
+message CharCBRComparisonData {
+  ComparisonData comparisonData = 1;
+  repeated HelperComparisonData helperData = 2;
+
+}
+message WorldCBRComparisonData{
+  StageData stageData = 1;
+  int32 roundState = 2;
+}
